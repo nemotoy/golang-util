@@ -1,5 +1,7 @@
 package slice
 
+import "sort"
+
 // UInt returns a unique slice of int from the given slice of int.
 func UInt(raw []int) []int {
 	m := make(map[int]bool, len(raw))
@@ -10,5 +12,14 @@ func UInt(raw []int) []int {
 			ii = append(ii, i)
 		}
 	}
+	return ii
+}
+
+// UIntASC returns sorted a unique slice of int in ascending order from the given slice of int.
+func UIntASC(raw []int) []int {
+	ii := UInt(raw)
+	sort.Slice(ii, func(i, j int) bool {
+		return ii[i] < ii[j]
+	})
 	return ii
 }

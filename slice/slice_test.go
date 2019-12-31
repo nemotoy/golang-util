@@ -52,3 +52,29 @@ func BenchmarkUInt(b *testing.B) {
 		ii = UInt(ii)
 	}
 }
+
+func TestUIntASC(t *testing.T) {
+	tests := []struct {
+		name string
+		in   []int
+		want []int
+	}{
+		{
+			name: "descending order slice of int",
+			in:   []int{10, 9, 8, 7, 6, 5, 4, 3, 2, 1},
+			want: []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
+		},
+		{
+			name: "duplicated slice of int",
+			in:   []int{10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1},
+			want: []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := UIntASC(tt.in); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("UIntASC() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
