@@ -30,3 +30,25 @@ func TestUInt(t *testing.T) {
 		})
 	}
 }
+
+/*
+	$ go test -count 3 -benchmem -bench .
+	goos: darwin
+	goarch: amd64
+	pkg: github.com/nemotoy/golang-util/slice
+	BenchmarkUInt-4            22629             53242 ns/op           32921 B/op          7 allocs/op
+	BenchmarkUInt-4            22537             53996 ns/op           32921 B/op          7 allocs/op
+	BenchmarkUInt-4            21912             59558 ns/op           32921 B/op          7 allocs/op
+	PASS
+	ok    github.com/nemotoy/golang-util/slice      5.373s
+*/
+func BenchmarkUInt(b *testing.B) {
+	var ii []int
+	for i := 0; i < 1000; i++ {
+		ii = append(ii, i)
+	}
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		ii = UInt(ii)
+	}
+}
