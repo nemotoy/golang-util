@@ -41,10 +41,10 @@ jobs:
       GOSUMDB: "off"
     steps:
       - checkout
-      - restore-cache-dependency
+      # - restore-cache-dependency
       - lint
       - test
-      - save-cache-dependency
+      # - save-cache-dependency
 
 workflows:
     test:
