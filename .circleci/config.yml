@@ -24,7 +24,7 @@ commands:
           command: |
             go mod vendor
             make ci.test
-            bash <(curl -s https://codecov.io/bash)
+            bash <(curl -s https://codecov.io/bash) -f ./codecov.yml
   save-cache-dependency:
     steps:
       - save_cache:
