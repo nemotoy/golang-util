@@ -1,3 +1,4 @@
+// This slice package provides utilities of the slice
 package slice
 
 import "sort"
